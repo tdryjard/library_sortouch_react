@@ -1,6 +1,6 @@
 {
     "name": "sortouch-react",
-    "version": "0.0.79",
+    "version": "0.0.83",
     "description": "Package sortouch for react app",
     "main": "index.jsx",
     "license": "MIT",
@@ -13,6 +13,7 @@
         "react-dom": "^16.0.0"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.9.4",
         "babel-core": "^6.21.0",
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.6.1",

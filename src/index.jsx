@@ -82,23 +82,117 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-if (true) {
-  module.exports = __webpack_require__(5);
-} else {}
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FormContact = function FormContact(props) {
+    var _useState = (0, _react.useState)(""),
+        _useState2 = _slicedToArray(_useState, 2),
+        phone = _useState2[0],
+        setPhone = _useState2[1];
+
+    var _useState3 = (0, _react.useState)(""),
+        _useState4 = _slicedToArray(_useState3, 2),
+        email = _useState4[0],
+        setEmail = _useState4[1];
+
+    var _useState5 = (0, _react.useState)(""),
+        _useState6 = _slicedToArray(_useState5, 2),
+        message = _useState6[0],
+        setMessage = _useState6[1];
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    var validatePhone = function validatePhone(phone) {
+        var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        return re.test(phone);
+    };
+
+    var takePhone = function takePhone(event) {
+        setPhone(event.target.value);
+    };
+
+    var takeEmail = function takeEmail(event) {
+        setEmail(event.target.value);
+    };
+
+    var sendMail = function sendMail() {
+        if (!validateEmail(email)) {
+            alert('email non valide');
+        } else if (!validatePhone(phone)) {
+            alert('numéro de téléphone non valide');
+        } else {
+            fetch('http://192.168.43.193:8000/api/mail/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin: origin }
+                },
+                body: JSON.stringify({
+                    phone: phone,
+                    email: email,
+                    message: message,
+                    category_id: props.categoryId,
+                    model_id: props.modelId,
+                    user_id: props.userId,
+                    view: 0
+                })
+            });
+        }
+    };
+
+    var getMessage = function getMessage(e) {
+        setMessage(e.target.value);
+    };
+
+    return _react2.default.createElement(
+        'div',
+        { className: 'containerForm' },
+        _react2.default.createElement('input', { onChange: takeEmail, type: 'text', className: 'inputFormChat', placeholder: 'email' }),
+        _react2.default.createElement('input', { onChange: takePhone, type: 'text', className: 'inputFormChat', placeholder: 'num\xE9ro de t\xE9l\xE9phone' }),
+        _react2.default.createElement('textarea', { className: 'inputMessageFormChatbot', placeholder: 'message', onChange: getMessage }),
+        _react2.default.createElement(
+            'button',
+            { onClick: sendMail, className: 'sendFormChatbot' },
+            'Envoyer !'
+        )
+    );
+};
+
+exports.default = FormContact;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -373,7 +467,7 @@ module.exports = function (list, options) {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -473,20 +567,137 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(4);
-
-/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var Questionchat = function Questionchat(props) {
+    var _useState = (0, _react.useState)([]),
+        _useState2 = _slicedToArray(_useState, 2),
+        totalQuestion = _useState2[0],
+        setTotalQuestion = _useState2[1];
+
+    (0, _react.useEffect)(function () {
+        printText(props.text);
+    }, [props.text]);
+
+    var printText = function printText(text) {
+        if (props.text) {
+            var index = 0;
+            var question = text.split('');
+            var stockQuestion = [];
+            var questionPrint = setInterval(function () {
+                stockQuestion = [].concat(_toConsumableArray(stockQuestion), [question[index]]);
+                setTotalQuestion([].concat(_toConsumableArray(totalQuestion), [stockQuestion]));
+                index++;
+                if (index === question.length) {
+                    clearInterval(questionPrint);
+                    return true;
+                }
+            }, 50);
+        }
+    };
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'p',
+            { className: 'textQuest' },
+            totalQuestion
+        )
+    );
+};
+
+exports.default = Questionchat;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _FormContact = __webpack_require__(1);
+
+var _FormContact2 = _interopRequireDefault(_FormContact);
+
+var _QuestionChat = __webpack_require__(4);
+
+var _QuestionChat2 = _interopRequireDefault(_QuestionChat);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = __webpack_require__(0);
+window.React = React;
+
+module.exports = __webpack_require__(8);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(2);
+            var content = __webpack_require__(7);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+var exported = content.locals ? content.locals : {};
+
+
+
+module.exports = exported;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(3);
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".containerForm{\n    height: 450px;\n    margin-top: 30px;\n    width: 300px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n}\n\n.inputFormChat{\n    width: 80%;\n    border-radius: 30px;\n    height: 30px;\n    padding: 5px;\n    background-color: white;\n    box-shadow: inset 0px 0px 3px rgb(66, 66, 66);\n    border: none;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n    text-align: center;\n    margin-bottom: 30px;\n}\n\n.inputMessageFormChatbot{\n    width: 80%;\n    border-radius: 15px;\n    height: 40%;\n    padding: 10px;\n    background-color: white;\n    box-shadow: inset 0px 0px 3px rgb(66, 66, 66);\n    border: none;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n    text-align: center;\n    margin-bottom: 20px;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n}\n\n.sendFormChatbot{\n    width: 100px;\n    height: 40px;\n    background-color: white;\n    border: none;\n    border-radius: 10px;\n    font-size: 15px;\n    font-weight: 600;\n    font-family: 'Sen', sans-serif;\n    box-shadow: 0px 0px 10px 0px rgb(143, 109, 182);\n    color: #b36fff;\n    cursor: pointer;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -496,23 +707,23 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _QuestionChat = __webpack_require__(7);
+var _QuestionChat = __webpack_require__(4);
 
 var _QuestionChat2 = _interopRequireDefault(_QuestionChat);
 
-var _FormContact = __webpack_require__(8);
+var _FormContact = __webpack_require__(1);
 
 var _FormContact2 = _interopRequireDefault(_FormContact);
 
-var _cross = __webpack_require__(11);
+var _cross = __webpack_require__(9);
 
 var _cross2 = _interopRequireDefault(_cross);
 
-var _logo = __webpack_require__(12);
+var _logo = __webpack_require__(10);
 
 var _logo2 = _interopRequireDefault(_logo);
 
-__webpack_require__(13);
+__webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -931,339 +1142,10 @@ var ChatBotArea = function ChatBotArea(_ref) {
     );
 };
 
-module.exports = ChatBotArea;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/** @license React v16.13.1
- * react.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var l=__webpack_require__(6),n="function"===typeof Symbol&&Symbol.for,p=n?Symbol.for("react.element"):60103,q=n?Symbol.for("react.portal"):60106,r=n?Symbol.for("react.fragment"):60107,t=n?Symbol.for("react.strict_mode"):60108,u=n?Symbol.for("react.profiler"):60114,v=n?Symbol.for("react.provider"):60109,w=n?Symbol.for("react.context"):60110,x=n?Symbol.for("react.forward_ref"):60112,y=n?Symbol.for("react.suspense"):60113,z=n?Symbol.for("react.memo"):60115,A=n?Symbol.for("react.lazy"):
-60116,B="function"===typeof Symbol&&Symbol.iterator;function C(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
-var D={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},E={};function F(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}F.prototype.isReactComponent={};F.prototype.setState=function(a,b){if("object"!==typeof a&&"function"!==typeof a&&null!=a)throw Error(C(85));this.updater.enqueueSetState(this,a,b,"setState")};F.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
-function G(){}G.prototype=F.prototype;function H(a,b,c){this.props=a;this.context=b;this.refs=E;this.updater=c||D}var I=H.prototype=new G;I.constructor=H;l(I,F.prototype);I.isPureReactComponent=!0;var J={current:null},K=Object.prototype.hasOwnProperty,L={key:!0,ref:!0,__self:!0,__source:!0};
-function M(a,b,c){var e,d={},g=null,k=null;if(null!=b)for(e in void 0!==b.ref&&(k=b.ref),void 0!==b.key&&(g=""+b.key),b)K.call(b,e)&&!L.hasOwnProperty(e)&&(d[e]=b[e]);var f=arguments.length-2;if(1===f)d.children=c;else if(1<f){for(var h=Array(f),m=0;m<f;m++)h[m]=arguments[m+2];d.children=h}if(a&&a.defaultProps)for(e in f=a.defaultProps,f)void 0===d[e]&&(d[e]=f[e]);return{$$typeof:p,type:a,key:g,ref:k,props:d,_owner:J.current}}
-function N(a,b){return{$$typeof:p,type:a.type,key:b,ref:a.ref,props:a.props,_owner:a._owner}}function O(a){return"object"===typeof a&&null!==a&&a.$$typeof===p}function escape(a){var b={"=":"=0",":":"=2"};return"$"+(""+a).replace(/[=:]/g,function(a){return b[a]})}var P=/\/+/g,Q=[];function R(a,b,c,e){if(Q.length){var d=Q.pop();d.result=a;d.keyPrefix=b;d.func=c;d.context=e;d.count=0;return d}return{result:a,keyPrefix:b,func:c,context:e,count:0}}
-function S(a){a.result=null;a.keyPrefix=null;a.func=null;a.context=null;a.count=0;10>Q.length&&Q.push(a)}
-function T(a,b,c,e){var d=typeof a;if("undefined"===d||"boolean"===d)a=null;var g=!1;if(null===a)g=!0;else switch(d){case "string":case "number":g=!0;break;case "object":switch(a.$$typeof){case p:case q:g=!0}}if(g)return c(e,a,""===b?"."+U(a,0):b),1;g=0;b=""===b?".":b+":";if(Array.isArray(a))for(var k=0;k<a.length;k++){d=a[k];var f=b+U(d,k);g+=T(d,f,c,e)}else if(null===a||"object"!==typeof a?f=null:(f=B&&a[B]||a["@@iterator"],f="function"===typeof f?f:null),"function"===typeof f)for(a=f.call(a),k=
-0;!(d=a.next()).done;)d=d.value,f=b+U(d,k++),g+=T(d,f,c,e);else if("object"===d)throw c=""+a,Error(C(31,"[object Object]"===c?"object with keys {"+Object.keys(a).join(", ")+"}":c,""));return g}function V(a,b,c){return null==a?0:T(a,"",b,c)}function U(a,b){return"object"===typeof a&&null!==a&&null!=a.key?escape(a.key):b.toString(36)}function W(a,b){a.func.call(a.context,b,a.count++)}
-function aa(a,b,c){var e=a.result,d=a.keyPrefix;a=a.func.call(a.context,b,a.count++);Array.isArray(a)?X(a,e,c,function(a){return a}):null!=a&&(O(a)&&(a=N(a,d+(!a.key||b&&b.key===a.key?"":(""+a.key).replace(P,"$&/")+"/")+c)),e.push(a))}function X(a,b,c,e,d){var g="";null!=c&&(g=(""+c).replace(P,"$&/")+"/");b=R(b,g,e,d);V(a,aa,b);S(b)}var Y={current:null};function Z(){var a=Y.current;if(null===a)throw Error(C(321));return a}
-var ba={ReactCurrentDispatcher:Y,ReactCurrentBatchConfig:{suspense:null},ReactCurrentOwner:J,IsSomeRendererActing:{current:!1},assign:l};exports.Children={map:function(a,b,c){if(null==a)return a;var e=[];X(a,e,null,b,c);return e},forEach:function(a,b,c){if(null==a)return a;b=R(null,null,b,c);V(a,W,b);S(b)},count:function(a){return V(a,function(){return null},null)},toArray:function(a){var b=[];X(a,b,null,function(a){return a});return b},only:function(a){if(!O(a))throw Error(C(143));return a}};
-exports.Component=F;exports.Fragment=r;exports.Profiler=u;exports.PureComponent=H;exports.StrictMode=t;exports.Suspense=y;exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED=ba;
-exports.cloneElement=function(a,b,c){if(null===a||void 0===a)throw Error(C(267,a));var e=l({},a.props),d=a.key,g=a.ref,k=a._owner;if(null!=b){void 0!==b.ref&&(g=b.ref,k=J.current);void 0!==b.key&&(d=""+b.key);if(a.type&&a.type.defaultProps)var f=a.type.defaultProps;for(h in b)K.call(b,h)&&!L.hasOwnProperty(h)&&(e[h]=void 0===b[h]&&void 0!==f?f[h]:b[h])}var h=arguments.length-2;if(1===h)e.children=c;else if(1<h){f=Array(h);for(var m=0;m<h;m++)f[m]=arguments[m+2];e.children=f}return{$$typeof:p,type:a.type,
-key:d,ref:g,props:e,_owner:k}};exports.createContext=function(a,b){void 0===b&&(b=null);a={$$typeof:w,_calculateChangedBits:b,_currentValue:a,_currentValue2:a,_threadCount:0,Provider:null,Consumer:null};a.Provider={$$typeof:v,_context:a};return a.Consumer=a};exports.createElement=M;exports.createFactory=function(a){var b=M.bind(null,a);b.type=a;return b};exports.createRef=function(){return{current:null}};exports.forwardRef=function(a){return{$$typeof:x,render:a}};exports.isValidElement=O;
-exports.lazy=function(a){return{$$typeof:A,_ctor:a,_status:-1,_result:null}};exports.memo=function(a,b){return{$$typeof:z,type:a,compare:void 0===b?null:b}};exports.useCallback=function(a,b){return Z().useCallback(a,b)};exports.useContext=function(a,b){return Z().useContext(a,b)};exports.useDebugValue=function(){};exports.useEffect=function(a,b){return Z().useEffect(a,b)};exports.useImperativeHandle=function(a,b,c){return Z().useImperativeHandle(a,b,c)};
-exports.useLayoutEffect=function(a,b){return Z().useLayoutEffect(a,b)};exports.useMemo=function(a,b){return Z().useMemo(a,b)};exports.useReducer=function(a,b,c){return Z().useReducer(a,b,c)};exports.useRef=function(a){return Z().useRef(a)};exports.useState=function(a){return Z().useState(a)};exports.version="16.13.1";
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var Questionchat = function Questionchat(props) {
-    var _useState = (0, _react.useState)([]),
-        _useState2 = _slicedToArray(_useState, 2),
-        totalQuestion = _useState2[0],
-        setTotalQuestion = _useState2[1];
-
-    (0, _react.useEffect)(function () {
-        printText(props.text);
-    }, [props.text]);
-
-    var printText = function printText(text) {
-        if (props.text) {
-            var index = 0;
-            var question = text.split('');
-            var stockQuestion = [];
-            var questionPrint = setInterval(function () {
-                stockQuestion = [].concat(_toConsumableArray(stockQuestion), [question[index]]);
-                setTotalQuestion([].concat(_toConsumableArray(totalQuestion), [stockQuestion]));
-                index++;
-                if (index === question.length) {
-                    clearInterval(questionPrint);
-                    return true;
-                }
-            }, 50);
-        }
-    };
-
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'p',
-            { className: 'textQuest' },
-            totalQuestion
-        )
-    );
-};
-
-exports.default = Questionchat;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(9);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var FormContact = function FormContact(props) {
-    var _useState = (0, _react.useState)(""),
-        _useState2 = _slicedToArray(_useState, 2),
-        phone = _useState2[0],
-        setPhone = _useState2[1];
-
-    var _useState3 = (0, _react.useState)(""),
-        _useState4 = _slicedToArray(_useState3, 2),
-        email = _useState4[0],
-        setEmail = _useState4[1];
-
-    var _useState5 = (0, _react.useState)(""),
-        _useState6 = _slicedToArray(_useState5, 2),
-        message = _useState6[0],
-        setMessage = _useState6[1];
-
-    function validateEmail(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
-    var validatePhone = function validatePhone(phone) {
-        var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-        return re.test(phone);
-    };
-
-    var takePhone = function takePhone(event) {
-        setPhone(event.target.value);
-    };
-
-    var takeEmail = function takeEmail(event) {
-        setEmail(event.target.value);
-    };
-
-    var sendMail = function sendMail() {
-        if (!validateEmail(email)) {
-            alert('email non valide');
-        } else if (!validatePhone(phone)) {
-            alert('numéro de téléphone non valide');
-        } else {
-            fetch('http://192.168.43.193:8000/api/mail/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin: origin }
-                },
-                body: JSON.stringify({
-                    phone: phone,
-                    email: email,
-                    message: message,
-                    category_id: props.categoryId,
-                    model_id: props.modelId,
-                    user_id: props.userId,
-                    view: 0
-                })
-            });
-        }
-    };
-
-    var getMessage = function getMessage(e) {
-        setMessage(e.target.value);
-    };
-
-    return _react2.default.createElement(
-        'div',
-        { className: 'containerForm' },
-        _react2.default.createElement('input', { onChange: takeEmail, type: 'text', className: 'inputFormChat', placeholder: 'email' }),
-        _react2.default.createElement('input', { onChange: takePhone, type: 'text', className: 'inputFormChat', placeholder: 'num\xE9ro de t\xE9l\xE9phone' }),
-        _react2.default.createElement('textarea', { className: 'inputMessageFormChatbot', placeholder: 'message', onChange: getMessage }),
-        _react2.default.createElement(
-            'button',
-            { onClick: sendMail, className: 'sendFormChatbot' },
-            'Envoyer !'
-        )
-    );
-};
-
-exports.default = FormContact;
+exports.default = ChatBotArea;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(1);
-            var content = __webpack_require__(10);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-var exported = content.locals ? content.locals : {};
-
-
-
-module.exports = exported;
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(2);
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".containerForm{\n    height: 450px;\n    margin-top: 30px;\n    width: 300px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n}\n\n.inputFormChat{\n    width: 80%;\n    border-radius: 30px;\n    height: 30px;\n    padding: 5px;\n    background-color: white;\n    box-shadow: inset 0px 0px 3px rgb(66, 66, 66);\n    border: none;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n    text-align: center;\n    margin-bottom: 30px;\n}\n\n.inputMessageFormChatbot{\n    width: 80%;\n    border-radius: 15px;\n    height: 40%;\n    padding: 10px;\n    background-color: white;\n    box-shadow: inset 0px 0px 3px rgb(66, 66, 66);\n    border: none;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n    text-align: center;\n    margin-bottom: 20px;\n    font-size: 15px;\n    font-family: 'Sen', sans-serif;\n}\n\n.sendFormChatbot{\n    width: 100px;\n    height: 40px;\n    background-color: white;\n    border: none;\n    border-radius: 10px;\n    font-size: 15px;\n    font-weight: 600;\n    font-family: 'Sen', sans-serif;\n    box-shadow: 0px 0px 10px 0px rgb(143, 109, 182);\n    color: #b36fff;\n    cursor: pointer;\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1271,7 +1153,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "3a04b5990648696c4b221811fe526047.png");
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1279,11 +1161,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "6bb2566e0dc97c59f3f30a295a4a1fd1.png");
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(1);
-            var content = __webpack_require__(14);
+var api = __webpack_require__(2);
+            var content = __webpack_require__(12);
 
             content = content.__esModule ? content.default : content;
 
@@ -1305,13 +1187,13 @@ var exported = content.locals ? content.locals : {};
 module.exports = exported;
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(2);
-var ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(15);
-var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(16);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(3);
+var ___CSS_LOADER_GET_URL_IMPORT___ = __webpack_require__(13);
+var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(14);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
@@ -1321,7 +1203,7 @@ module.exports = exports;
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1361,7 +1243,7 @@ module.exports = function (url, options) {
 };
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
