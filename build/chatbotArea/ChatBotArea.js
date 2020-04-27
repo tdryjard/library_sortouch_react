@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Questionchat from '../questionBlock/QuestionChat';
 import FormContact from '../fromContact/FormContact';
-import cross from './image/cross.png'
-import logo from './image/logo.png'
+import cross from './cross.png'
+import logo from './logo.png'
 import './ChatBotArea.css'
 
 const ChatBotArea = ({modelId, userId}) => {
@@ -25,7 +25,7 @@ const ChatBotArea = ({modelId, userId}) => {
     useEffect(() => {
         setTimeout(() => {
             setTextIcon(false)
-        }, 7000)
+        }, 4000)
     })
 
     const printContainers = async () => {
@@ -169,7 +169,7 @@ const ChatBotArea = ({modelId, userId}) => {
                 </div>}
             <div className={chatActive ? "contentChatbot" : "contentIcon"}>
             {!chatActive ?
-            <div>
+            <div className="contentIcon">
                 {textIcon &&
                 <div className="contentTextIconChat">
                     <p onClick={activeChat} className="textIconCard"><Questionchat text={"Prenez contact avec moi !"}/></p>
@@ -180,7 +180,7 @@ const ChatBotArea = ({modelId, userId}) => {
             Array.isArray(containers) &&
             containers.map((container, index) => {
                 return(
-                    <div className={container.content_type === "question" && index%3 !== 0 ? "contentQuestionChat" : container.content_type === "question" && index%3 === 0 ? "contentQuestionChatDecale" : container.content_type === "response" ? "contentResponseChat" : "contentDestinationChat"}>
+                    <div className={container.content_type === "question" ? "contentLittleQuestChat" : container.content_type === "response" ? "contentResponseChat" : "contentLittleDestinationChat"}>
                             {Array.isArray(cardsQuest[index]) && container.content_type === "question" &&
                                 cardsQuest[index].map(card => {
                                     return(
@@ -199,7 +199,7 @@ const ChatBotArea = ({modelId, userId}) => {
                             {Array.isArray(cardsRes[index]) && container.content_type === "response" &&
                                 cardsRes[index].map(card => {
                                     return(
-                                        <div onClick={() => {selectResponse(card.id, index)}}   className={responseSelected.includes(card.id) ? 'containerCardResChatActive' : 'containerCardResChat'}>
+                                        <div onClick={() => {selectResponse(card.id, index)}}   className={responseSelected.includes(card.id) ? 'containerLittleCardResChatActive' : 'containerLittleCardResChat'}>
                                             <p id={`container${index}`} className="textCardResChat">{card.content}</p>
                                         </div>)
                                         })

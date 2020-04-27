@@ -55,7 +55,7 @@ const FormContact = (props) => {
     
 
     return(
-        <div className="containerForm">
+        <div className="containerLittleFormChatbot">
             <input onChange={takeEmail} type="text" className="inputFormChat" placeholder="email"/>
             <input onChange={takePhone} type="text" className="inputFormChat" placeholder="numéro de téléphone"/>
             <textarea className="inputMessageFormChatbot" placeholder="message" onChange={getMessage}/>

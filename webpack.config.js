@@ -3,10 +3,10 @@ var webpack = require("webpack");
 
 module.exports = {
     mode: 'production',
-    entry: './index.jsx',
+    entry: './src/chatbotArea/ChatBotArea.js',
     output: {
-        path: path.resolve('src'),
-        filename: 'index.jsx',
+        path: path.resolve('build'),
+        filename: 'ChatBotArea.js',
         libraryTarget: 'commonjs2'
     },
     module: {
@@ -24,13 +24,16 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                  {
-                    loader: 'file-loader',
+              test: /\.(png|jpg|gif)$/i,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 8192,
                   },
-                ],
-              },
+                },
+              ],
+            }
         ]
     },
     resolve: {
