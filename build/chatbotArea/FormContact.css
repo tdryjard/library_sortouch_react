@@ -1,7 +1,12 @@
+@font-face {
+    font-family: "Sen";
+    src: url("../Sen/Sen-Regular.ttf");
+}
+    
 .containerLittleFormChatbot{
     margin: 0;
-    height: 450px;
-    margin-top: 30px;
+    height: 100%;
+    margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -9,7 +14,7 @@
     flex-direction: column;
 }
 
-.inputFormChat{
+.containerLittleFormChatbot .inputFormChat{
     width: 80%;
     border-radius: 30px;
     height: 30px;
@@ -24,7 +29,7 @@
 }
 
 .inputMessageFormChatbot{
-    width: 80%;
+    width: 85%;
     border-radius: 15px;
     height: 40%;
     padding: 10px;
@@ -36,10 +41,12 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 15px;
-    font-family: 'Sen', sans-serif;
 }
 
-.sendFormChatbot{
+.containerLittleFormChatbot .sendFormChatbot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 40px;
     background-color: white;

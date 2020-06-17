@@ -1,6 +1,6 @@
 {
     "name": "sortouch-react",
-    "version": "0.0.88",
+    "version": "0.0.16",
     "description": "Package sortouch for react app",
     "main": "build/ChatBotArea.js",
     "license": "MIT",
@@ -31,5 +31,7 @@
         "webpack": "^4.5.0",
         "webpack-cli": "^3.2.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "react-hook-form": "^5.7.2"
+    }
 }
